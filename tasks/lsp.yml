@@ -1,0 +1,26 @@
+- name: add dotnet key
+  shell: |
+    wget https://packages.microsoft.com/config/debian/11/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+    dpkg -i packages-microsoft-prod.deb
+    rm packages-microsoft-prod.deb
+  tags:
+    - dotnet 
+    - lsp 
+- name: Install dotnet sdk
+  apt:  
+      name: apt-transport-https 
+      update_cache: yes
+  tags:
+    - dotnet 
+    - lsp 
+- name: Install dotnet sdk 2
+  apt:  
+      name: dotnet-sdk-6.0
+      update_cache: yes
+  tags:
+    - dotnet 
+    - lsp 
+- name: Install dotnet runtime
+  apt: 
+    name: aspnetcore-runtime-6.0
+

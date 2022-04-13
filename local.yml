@@ -1,0 +1,24 @@
+- hosts: localhost
+  vars:
+     source_key: "./.ssh/id_rsa"
+     dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
+  become: true
+  pre_tasks:
+    - name:
+      apt:
+        update_cache: true
+      tags:
+        - node
+        - zsh
+        - neovim
+        - install
+
+  tasks:
+    - include: tasks/ssh-setup.yml
+    - include: tasks/git-setup.yml
+    - include: tasks/core-setup.yml
+    - include: tasks/dotfiles.yml
+    - include: tasks/nvim-setup.yml
+    - include: tasks/zsh.yml
+    - include: tasks/node.yml
+    - include: tasks/lsp.yml

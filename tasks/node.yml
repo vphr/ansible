@@ -1,0 +1,15 @@
+  - name: install node
+    apt:
+      name: ['nodejs' ,'npm', 'yarn']
+    tags:
+      - node
+  - name: install n
+    npm: 
+      name: n
+      global: true
+    tags:
+      - node
+  - name: n 14
+    shell: n 14
+    tags:
+      - node
